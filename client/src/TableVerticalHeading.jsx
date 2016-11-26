@@ -32,11 +32,14 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     handleMouseDown: function (event) {
+      const offsetY = event.pageY - event.target.offsetParent.offsetTop;
+      const offsetX = event.pageX - event.target.offsetParent.offsetLeft;
       dispatch({
         type: 'UPDATE_UI',
         data: {
           draggedFieldId: this.props.field.id,
-          offsetY: event.clientY - event.target.offsetParent.offsetTop
+          offsetX: offsetX,
+          offsetY: offsetY
         }
       })
     }

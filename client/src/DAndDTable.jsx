@@ -5,10 +5,10 @@ import TableContainer from './TableContainer.jsx';
 class DAndDTable extends Component {
   constructor() {
     super();
-    this.handleMouseMove = this.handleMouseMove.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
   }
 
-  handleMouseMove(event) {
+  handleDrag(event) {
     if (this.floatingColumn) {
       const headingTargets = Array.from(this.mainTable.el.querySelectorAll('.table-horizontal-heading-component'));
       const target = headingTargets.find(target => target.offsetLeft <= event.pageX && target.offsetLeft + target.offsetWidth >= event.pageX);
@@ -16,6 +16,7 @@ class DAndDTable extends Component {
         this.props.handleReorderItems(headingTargets.indexOf(target));
         this.forceUpdate();
       }
+      this.floatingColumn.el.style.top = this.draggedHeading.offsetTop - document.body.scrollTop + 'px';
       this.floatingColumn.el.style.left = event.clientX - this.props.ui.offsetX + 'px';
     }
     if (this.floatingRow) {
@@ -26,37 +27,40 @@ class DAndDTable extends Component {
         this.forceUpdate();
       }
       this.floatingRow.el.style.top = event.clientY - this.props.ui.offsetY + 'px';
+      this.floatingRow.el.style.left = this.draggedHeading.offsetLeft - document.body.scrollLeft + 'px';
     }
   }
 
-  initializeFloatingTables() {
+  resetFloatingTables() {
     if (this.floatingColumn) {
-      const draggedHeading = this.mainTable.el.querySelector(`.table-horizontal-heading-component[data-item-id="${this.props.ui.draggedItemId}"]`);
-      this.floatingColumn.el.style.width = draggedHeading.offsetWidth + 'px';
-      this.floatingColumn.el.style.top = draggedHeading.offsetTop + 'px';
-      this.floatingColumn.el.style.left = draggedHeading.offsetLeft + 'px';
+      this.draggedHeading = this.mainTable.el.querySelector(`.table-horizontal-heading-component[data-item-id="${this.props.ui.draggedItemId}"]`);
+      this.floatingColumn.el.style.width = this.draggedHeading.offsetWidth + 'px';
+      this.floatingColumn.el.style.top = this.draggedHeading.offsetTop - document.body.scrollTop + 'px';
+      this.floatingColumn.el.style.left = this.draggedHeading.offsetLeft - document.body.scrollLeft + 'px';
     }
     if (this.floatingRow) {
-      const draggedHeading = this.mainTable.el.querySelector(`.table-vertical-heading-component[data-field-id="${this.props.ui.draggedFieldId}"]`);
+      this.draggedHeading = this.mainTable.el.querySelector(`.table-vertical-heading-component[data-field-id="${this.props.ui.draggedFieldId}"]`);
       this.floatingRow.el.style.width = this.mainTable.el.offsetWidth + 'px';
-      this.floatingRow.el.style.top = draggedHeading.offsetTop + 'px';
-      this.floatingRow.el.style.left = draggedHeading.offsetLeft + 'px';
+      this.floatingRow.el.style.top = this.draggedHeading.offsetTop - document.body.scrollTop + 'px';
+      this.floatingRow.el.style.left = this.draggedHeading.offsetLeft - document.body.scrollLeft + 'px';
     }
   }
 
   componentDidMount() {
-    this.initializeFloatingTables();
+    this.resetFloatingTables();
     document.body.addEventListener('mouseup', this.props.handleMouseUp);
-    document.body.addEventListener('mousemove', this.handleMouseMove);
+    document.body.addEventListener('mousemove', this.handleDrag);
+    document.addEventListener('scroll', this.handleDrag);
   }
 
   componentDidUpdate() {
-    this.initializeFloatingTables();
+    this.resetFloatingTables();
   }
 
   componentWillUnmount() {
     document.body.removeEventListener('mouseup', this.props.handleMouseUp);
-    document.body.removeEventListener('mousemove', this.handleMouseMove);
+    document.body.removeEventListener('mousemove', this.handleDrag);
+    document.removeEventListener('scroll', this.handleDrag);
   }
 
   render() {

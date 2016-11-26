@@ -42,11 +42,14 @@ function mapDispatchToProps(dispatch) {
       })
     },
     handleMouseDown: function (event) {
+      const offsetY = event.pageY - event.target.offsetParent.offsetTop;
+      const offsetX = event.pageX - event.target.offsetParent.offsetLeft;
       dispatch({
         type: 'UPDATE_UI',
         data: {
           draggedItemId: this.props.item.id,
-          offsetX: event.clientX - event.target.offsetParent.offsetLeft
+          offsetX: offsetX,
+          offsetY: offsetY
         }
       })
     }
