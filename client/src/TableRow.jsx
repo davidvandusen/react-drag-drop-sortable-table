@@ -10,7 +10,7 @@ class TableRow extends Component {
             <TableCell
               key={itemId}
               enablePlaceholder={this.props.enablePlaceholder}
-              fieldId={this.props.field.id}
+              field={this.props.field}
               item={this.props.items.find(item => item.id === itemId)} />
           )
         }

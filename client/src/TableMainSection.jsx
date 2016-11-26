@@ -6,10 +6,13 @@ class TableMainSection extends Component {
   render() {
     return (
       <div className="table-main-section-component">
-        <TableHorizontalHeadings
-          enablePlaceholder={this.props.enablePlaceholder}
-          itemOrder={this.props.itemOrder}
-          items={this.props.items} />
+        {
+          this.props.showHorizontalHeadings &&
+          <TableHorizontalHeadings
+            enablePlaceholder={this.props.enablePlaceholder}
+            itemOrder={this.props.itemOrder}
+            items={this.props.items} />
+        }
         <TableBody
           itemOrder={this.props.itemOrder}
           fieldOrder={this.props.fieldOrder}
@@ -22,6 +25,7 @@ class TableMainSection extends Component {
 }
 
 TableMainSection.defaultProps = {
+  showHorizontalHeadings: true,
   enablePlaceholder: true,
   items: [],
   fields: []

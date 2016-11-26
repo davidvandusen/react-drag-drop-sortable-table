@@ -7,9 +7,16 @@ class TableCell extends Component {
       <div
         className={
           'table-cell-component' +
-          (this.props.enablePlaceholder && this.props.item.id === this.props.ui.draggedItemId ? ' placeholder' : '')
+          (
+            this.props.enablePlaceholder &&
+            (
+              this.props.item.id === this.props.ui.draggedItemId ||
+              this.props.field.id === this.props.ui.draggedFieldId
+            ) ?
+              ' placeholder' : ''
+          )
         }>
-        {this.props.item.fieldData.find(field => field.fieldId === this.props.fieldId).value}
+        {this.props.item.fieldData.find(field => field.fieldId === this.props.field.id).value}
       </div>
     );
   }

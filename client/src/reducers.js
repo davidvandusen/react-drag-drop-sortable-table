@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-function moveItemInArray(array, from, to) {
+function moveValueInArray(array, from, to) {
   const a = array.slice(0);
   a.splice(to, 0, a.splice(from, 1)[0]);
   return a;
@@ -28,7 +28,13 @@ function uiReducer(state = {}, action) {
     case 'REORDER_ITEMS':
       const currentDraggedItemIndex = state.itemOrder.indexOf(state.draggedItemId);
       if (currentDraggedItemIndex === -1) return state;
-      state.itemOrder = moveItemInArray(state.itemOrder, currentDraggedItemIndex, action.data.newDraggedItemIndex);
+      state.itemOrder = moveValueInArray(state.itemOrder, currentDraggedItemIndex, action.data.newDraggedItemIndex);
+      return state;
+      break;
+    case 'REORDER_FIELDS':
+      const currentDraggedFieldIndex = state.fieldOrder.indexOf(state.draggedFieldId);
+      if (currentDraggedFieldIndex === -1) return state;
+      state.fieldOrder = moveValueInArray(state.fieldOrder, currentDraggedFieldIndex, action.data.newDraggedFieldIndex);
       return state;
       break;
     default:

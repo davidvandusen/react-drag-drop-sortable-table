@@ -11,8 +11,16 @@ class TableContainer extends Component {
           'table-container-component' +
           (this.props.movable ? ' movable' : '')
         }>
-        {this.props.showVerticalHeadings && <TableVerticalHeadings fields={this.props.fields} />}
+        {
+          this.props.showVerticalHeadings &&
+          <TableVerticalHeadings
+            fieldOrder={this.props.fieldOrder}
+            enablePlaceholder={this.props.enablePlaceholder}
+            showHorizontalHeadings={this.props.showHorizontalHeadings}
+            fields={this.props.fields} />
+        }
         <TableMainSection
+          showHorizontalHeadings={this.props.showHorizontalHeadings}
           enablePlaceholder={this.props.enablePlaceholder}
           itemOrder={this.props.itemOrder}
           fieldOrder={this.props.fieldOrder}
@@ -25,6 +33,7 @@ class TableContainer extends Component {
 
 TableContainer.defaultProps = {
   movable: false,
+  showHorizontalHeadings: true,
   showVerticalHeadings: true,
   enablePlaceholder: true,
   items: [],
