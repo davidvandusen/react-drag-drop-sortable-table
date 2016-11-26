@@ -6,7 +6,7 @@ class TableVerticalHeading extends Component {
     return (
       <div
         data-field-id={this.props.field.id}
-        onMouseDown={this.props.handleMouseDown.bind(this, this.props.field.id)}
+        onMouseDown={this.props.handleMouseDown.bind(this)}
         className={
           'table-vertical-heading-component' +
           (this.props.enablePlaceholder && this.props.ui.draggedFieldId === this.props.field.id ? ' placeholder' : '')
@@ -29,11 +29,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleMouseDown: function (fieldId, event) {
+    handleMouseDown: function (event) {
       dispatch({
         type: 'UPDATE_UI',
         data: {
-          draggedFieldId: fieldId,
+          draggedFieldId: this.props.field.id,
           offsetY: event.clientY - event.target.offsetTop
         }
       })
