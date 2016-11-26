@@ -7,6 +7,7 @@ class TableCell extends Component {
       <div
         className={
           'table-cell-component' +
+          (this.props.ui.highlightItemId === this.props.item.id ? ' highlight' : '') +
           (
             this.props.enablePlaceholder &&
             (

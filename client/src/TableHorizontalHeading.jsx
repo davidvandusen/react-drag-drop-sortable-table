@@ -6,8 +6,10 @@ class TableHorizontalHeading extends Component {
     return (
       <div
         data-item-id={this.props.item.id}
+        onClick={this.props.handleClick.bind(this)}
         className={
           'table-horizontal-heading-component' +
+          (this.props.ui.highlightItemId === this.props.item.id ? ' highlight' : '') +
           (this.props.enablePlaceholder && this.props.ui.draggedItemId === this.props.item.id ? ' placeholder' : '')
         }>
         <div
@@ -31,6 +33,14 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    handleClick: function () {
+      dispatch({
+        type: 'UPDATE_UI',
+        data: {
+          highlightItemId: this.props.item.id
+        }
+      })
+    },
     handleMouseDown: function (event) {
       dispatch({
         type: 'UPDATE_UI',

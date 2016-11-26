@@ -15,6 +15,9 @@ body {
   border: 1px solid lightgrey;
   padding: 2em;
 }
+.table-horizontal-heading-component {
+  cursor: pointer;
+}
 .table-placeholder-heading,
 .table-horizontal-heading-component,
 .table-vertical-heading-component,
@@ -71,6 +74,9 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.highlight {
+  background: lightyellow;
 }
 /* make divs with class placeholder look ghostly */
 .placeholder {

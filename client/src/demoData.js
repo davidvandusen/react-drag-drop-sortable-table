@@ -4,6 +4,7 @@ export default {
     itemOrder: [1, 2, 3],
     draggedFieldId: null,
     draggedItemId: null,
+    highlightItemId: null,
     offsetX: 0,
     offsetY: 0
   },
