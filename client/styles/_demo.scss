@@ -92,6 +92,9 @@ body {
   transition: opacity 200ms;
   width: 2em;
 }
+.placeholder .gripper {
+  transition: none;
+}
 .movable .gripper,
 .table-horizontal-heading-component:hover .gripper,
 .table-vertical-heading-component:hover .gripper {
