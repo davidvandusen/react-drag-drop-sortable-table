@@ -10,22 +10,22 @@ class DAndDTable extends Component {
 
   handleMouseMove(event) {
     if (this.floatingColumn) {
-      this.floatingColumn.el.style.left = event.clientX - this.props.ui.offsetX + 'px';
       const headingTargets = Array.from(this.mainTable.el.querySelectorAll('.table-horizontal-heading-component'));
       const target = headingTargets.find(target => target.offsetLeft <= event.pageX && target.offsetLeft + target.offsetWidth >= event.pageX);
       if (target && target.dataset.itemId != this.props.ui.draggedItemId) {
         this.props.handleReorderItems(headingTargets.indexOf(target));
         this.forceUpdate();
       }
+      this.floatingColumn.el.style.left = event.clientX - this.props.ui.offsetX + 'px';
     }
     if (this.floatingRow) {
-      this.floatingRow.el.style.top = event.clientY - this.props.ui.offsetY + 'px';
       const headingTargets = Array.from(this.mainTable.el.querySelectorAll('.table-vertical-heading-component'));
       const target = headingTargets.find(target => target.offsetTop <= event.pageY && target.offsetTop + target.offsetHeight >= event.pageY);
       if (target && target.dataset.fieldId != this.props.ui.draggedFieldId) {
         this.props.handleReorderFields(headingTargets.indexOf(target));
         this.forceUpdate();
       }
+      this.floatingRow.el.style.top = event.clientY - this.props.ui.offsetY + 'px';
     }
   }
 
