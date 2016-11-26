@@ -1,0 +1,81 @@
+/* make sure the body is at least the height of the browser window */
+html,
+body {
+  background: #f5f5f5;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  height: 100%;
+}
+/* center the main content area */
+.page-container {
+  margin: 0 auto;
+  width: 960px;
+}
+.d-and-d-table-component {
+  background: white;
+  border: 1px solid lightgrey;
+  padding: 2em;
+}
+.table-horizontal-heading-component,
+.table-vertical-heading-component,
+.table-cell-component {
+  background: white;
+  height: 3em;
+  line-height: 3em;
+  text-align: center;
+  flex-grow: 1;
+}
+.table-horizontal-heading-component,
+.table-vertical-heading-component {
+  cursor: move;
+}
+.table-container-component {
+  display: flex;
+  flex-grow: 1;
+}
+.table-horizontal-headings-component {
+  display: flex;
+  flex-grow: 1;
+}
+.table-vertical-headings-component {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+.table-main-section-component {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.table-body-component {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.table-row-component {
+  display: flex;
+  flex-grow: 1;
+}
+/* movable is one of the hidden tables */
+.movable {
+  box-shadow: 2px 2px 5px rgba(0,0,0,.25);
+  cursor: move;
+  display: flex;
+  left: 0;
+  opacity: 0.9;
+  position: absolute;
+  top: 0;
+}
+/* hackily disable user selection on draggable things */
+.table-container-component {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* make divs with class placeholder look like they're empty */
+.placeholder {
+  background: #eee;
+  color: #ccc;
+}
