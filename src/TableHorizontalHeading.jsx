@@ -37,7 +37,7 @@ function mapDispatchToProps(dispatch) {
       dispatch({
         type: 'UPDATE_UI',
         data: {
-          highlightItemId: this.props.item.id
+          highlightItemId: this.props.item.id === this.props.ui.highlightItemId ? null : this.props.item.id
         }
       })
     },
