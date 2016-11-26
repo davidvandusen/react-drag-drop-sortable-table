@@ -22,12 +22,9 @@ body {
   background: white;
   height: 3em;
   line-height: 3em;
+  position: relative;
   text-align: center;
   flex-grow: 1;
-}
-.table-horizontal-heading-component,
-.table-vertical-heading-component {
-  cursor: move;
 }
 .table-container-component {
   display: flex;
@@ -75,8 +72,17 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
-/* make divs with class placeholder look like they're empty */
+/* make divs with class placeholder look ghostly */
 .placeholder {
   background: #eee;
   color: #ccc;
+}
+.gripper {
+  background: rgba(0,0,0,0.05);
+  bottom: 0;
+  cursor: move;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 2em;
 }

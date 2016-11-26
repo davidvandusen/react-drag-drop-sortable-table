@@ -6,11 +6,13 @@ class TableHorizontalHeading extends Component {
     return (
       <div
         data-item-id={this.props.item.id}
-        onMouseDown={this.props.handleMouseDown.bind(this)}
         className={
           'table-horizontal-heading-component' +
           (this.props.enablePlaceholder && this.props.ui.draggedItemId === this.props.item.id ? ' placeholder' : '')
         }>
+        <div
+          onMouseDown={this.props.handleMouseDown.bind(this)}
+          className="gripper" />
         {this.props.item.name}
       </div>
     );
@@ -34,7 +36,7 @@ function mapDispatchToProps(dispatch) {
         type: 'UPDATE_UI',
         data: {
           draggedItemId: this.props.item.id,
-          offsetX: event.clientX - event.target.offsetLeft
+          offsetX: event.clientX - event.target.offsetParent.offsetLeft
         }
       })
     }
