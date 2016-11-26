@@ -23,11 +23,15 @@ body {
 .table-vertical-heading-component,
 .table-cell-component {
   background: white;
+  flex-grow: 1;
   height: 3em;
   line-height: 3em;
   position: relative;
   text-align: center;
-  flex-grow: 1;
+}
+.table-horizontal-heading-component,
+.table-cell-component {
+  width: 4em;
 }
 .table-container-component {
   display: flex;
@@ -75,8 +79,14 @@ body {
   -ms-user-select: none;
   user-select: none;
 }
+.better {
+  background: lightblue;
+}
+.worse {
+  background: lightpink;
+}
 .highlight {
-  background: lightyellow;
+  background: lightgoldenrodyellow;
 }
 /* make divs with class placeholder look ghostly */
 .placeholder {
